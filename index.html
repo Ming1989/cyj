@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    ::-webkit-scrollbar{
+        display:none;
+    } 
+	</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>穿云箭导航 - 不懂么？搜一搜！</title>
+    <meta name="keywords" content="穿云箭导航，不懂么？搜一搜！">
+    <meta name="description" content="一只穿云箭，千军万马来相见"/>
+    <link rel="shortcut icon" href="static/img/favicon.ico">
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css'>
+    <!-- 百度统计代码 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?786a6208323fbecfb41d71bfda8daca6";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+      </script>
+
+    <script language="JavaScript">
+            function startTime()   
+            {   
+                var today=new Date();//定义日期对象   
+                var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年    
+                var MM = today.getMonth()+1;//通过日期对象的getMonth()方法返回月   
+                var dd = today.getDate();//通过日期对象的getDate()方法返回日
+                var hh=today.getHours();//通过日期对象的getHours方法返回小时
+                var mm=today.getMinutes();//通过日期对象的getMinutes方法返回分钟   
+                var ss=today.getSeconds();//通过日期对象的getSeconds方法返回秒   
+                // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09   
+                MM=checkTime(MM);
+                dd=checkTime(dd);
+                mm=checkTime(mm);   
+                ss=checkTime(ss); 
+				
+				if (hh<13) {
+					easthh=hh+11;
+				}
+				  else easthh=hh-13;
+				  
+				if (hh<16) {
+					westhh=hh+8;
+				}
+				  else westhh=hh-16;
+                <!-- ar day; //用于保存星期（getDay()方法得到星期编号）
+                <!-- if(today.getDay()==0)   day   =   "星期日 " 
+                <!-- if(today.getDay()==1)   day   =   "星期一 " 
+                <!-- if(today.getDay()==2)   day   =   "星期二 " 
+                <!-- if(today.getDay()==3)   day   =   "星期三 " 
+                <!-- if(today.getDay()==4)   day   =   "星期四 " 
+                <!-- if(today.getDay()==5)   day   =   "星期五 " 
+                <!-- if(today.getDay()==6)   day   =   "星期六 " 
+                document.getElementById('nowDateTimeSpan01').innerHTML=" "+ hh+":"+mm+":"+ss; 
+				document.getElementById('nowDateTimeSpan02').innerHTML=" "+ easthh+":"+mm+":"+ss; 
+				document.getElementById('nowDateTimeSpan03').innerHTML=" "+ westhh+":"+mm+":"+ss; 
+                setTimeout('startTime()',1000);//每一秒中重新加载startTime()方法 
+            }   
+             
+            function checkTime(i)   
+            {   
+                if (i<10){
+                    i="0" + i;
+                }   
+                  return i;
+            }  
+        </script>
+
+<style>
+canvas {
+  z-index: -100;
+  position: fixed;
+  display: block;
+  margin: auto;
+}
+</style>
+
+<script type="text/javascript">   
+function password() {   
+var testV = 1;   
+var pass1 = prompt('请输入密码','');   
+while (testV < 9999) {   
+if (!pass1)   
+history.go(-1);   
+if (pass1 == "ming") {//密码设置 
+<!--alert('密码正确'); -->  
+break;   
+}   
+testV+=1;   
+var pass1 =   
+prompt('密码错误!请重新输入:');   
+}   
+if (pass1!="password" & testV ==9999)   
+history.go(-1);   
+return " ";   
+}   
+document.write(password());   
+</script>  
+
+</head>
+
+<body onload="startTime()">
+
+<canvas id="canvas"></canvas>
+<p>  
+
+<div class="container">
+	<div class="currency">
+		<select id="from_currency">
+			<option value="AUD">澳元（AUD）</option>
+			<option value="CAD">加元（CAD）</option>
+			<option value="CNY">人民币（CNY）</option>
+			<option value="EUR">欧元（EUR）</option>
+			<option value="GBP">英镑（GBP）</option>
+			<option value="HKD">港币（HKD）</option>
+			<option value="JPY">日元（JPY）</option>
+			<option value="USD" selected>美元（USD）</option>
+		</select>
+		<input type="number" id="from_ammount" placeholder="0" value=100 />
+	</div>
+	<div class="middle">
+		<button id="exchange">
+			<i class="fas fa-exchange-alt"></i>
+		</button>
+		<div class="rate" id="rate"></div>
+	</div>
+	<div class="currency">
+		<select id="to_currency">
+			<option value="AUD">澳元（AUD）</option>
+			<option value="CAD">加元（CAD）</option>
+			<option value="CNY" selected>人民币（CNY）</option>
+			<option value="EUR">欧元（EUR）</option>
+			<option value="GBP">英镑（GBP）</option>
+			<option value="HKD">港币（HKD）</option>
+			<option value="JPY">日元（JPY）</option>
+			<option value="USD">美元（USD）</option>
+		</select>
+		<output type="number" id="to_ammount" placeholder="0" />
+	</div>
+</div>
+        
+<div class="worldtime">
+    <!-- <li title="北京时间"><img src="static/img/China.png" width=20px height=14px><a id="tbeijing" class="city">北京<font color="#000" size="3"><span id="nowDateTimeSpan01"></span></font></a></li>
+    <li title="美东时间"><img src="static/img/USA.png" width=20px height=14px><a id="teastus" class="city">美东<font color="#000" size="3"><span id="nowDateTimeSpan02"></span></font></a></li>
+    <li title="美西时间"><img src="static/img/USA.png" width=20px height=14px><a id="twestus" class="city">美西<font color="#000" size="3"><span id="nowDateTimeSpan03"></span></font></a></li>-->
+
+    <div style="width:420px;height:20px;position:absolute;filter:alpha(opacity=0);top:0;left:0;"></div>
+    <li title="北京时间"><img src="static/img/China.png" width=18px height=12px><a id="tbeijing" class="city"><font size=3 face="arial"> 北京 <iframe src="http://free.timeanddate.com/clock/i7p08c96/n33/fs16/tct/pct/th1" frameborder="0" width="65" height="16" allowTransparency="true"></iframe></font></a></li>
+    <li title="美东时间"><img src="static/img/USA.png" width=18px height=12px><a id="teastus" class="city"><font size=3 face="arial"> 美东 <iframe src="http://free.timeanddate.com/clock/i7p08vml/n179/fs16/tct/pct/th1" frameborder="0" width="65" height="16" allowTransparency="true"></iframe></font></a></li>
+    <li title="美西时间"><img src="static/img/USA.png" width=18px height=12px><a id="twestus" class="city"><font size=3 face="arial"> 美西 <iframe src="http://free.timeanddate.com/clock/i7p08vml/n137/fs16/tct/pct/th1" frameborder="0" width="65" height="16" allowTransparency="true"></iframe></font></a></li>
+</div>
+
+<div class="worldclock">
+    <div style="width:420px;height:100px;position:absolute;filter:alpha(opacity=0);top:10px;left:0;"></div>
+    <li title="北京时间"><iframe src="http://free.timeanddate.com/clock/i7owg9y0/n33/szw80/szh80/cf100/hnce1ead6/mqv0/mhv0/mmv0/hhl60/hml80/hsl80" frameborder="0" width="80" height="80"></iframe></li>
+    <li title="美东时间"><iframe src="http://free.timeanddate.com/clock/i7owavv2/n179/szw80/szh80/cf100/hnce1ead6/mqv0/mhv0/mmv0/hhl60/hml80/hsl80" frameborder="0" width="80" height="80"></iframe></li>
+    <li title="美西时间"><iframe src="http://free.timeanddate.com/clock/i7owavv2/n137/szw80/szh80/cf100/hnce1ead6/mqv0/mhv0/mmv0/hhl60/hml80/hsl80" frameborder="0" width="80" height="80"></iframe></li>
+</div>
+
+<div class="inner-center main">
+  <div class="content-inside">
+        
+    <!-- 搜索框 start -->
+    <div id="search_form" class="search-section" target="_blank">
+      <div class="search-left">
+        <div id="search_logo" data-type="baidu" class="search-logo"></div>
+        <div class="input-wrap">
+          <input id="search_keyword"
+                class="search-input"
+                name="keyword"
+                maxlength="100"
+                autocomplete="off"
+                type="text"
+                placeholder="不懂么？搜一搜！">
+          <div class="clear-keyword" id="clear_keyword" title="清空">X</div>
+        </div>
+        <!--  搜索引擎 start  -->
+        <ul id="search_methods" class="search-methods">
+          <li data-type="baidu" class="search-item baidu">百度</li>
+		  <li data-type="google" class="search-item google">谷歌</li>
+        </ul>
+        <!--  搜索引擎 end  -->
+        <!--  搜索结果 start -->
+        <ul id="search_result" class="search-result">
+          <!--<li class="result-item"></li>-->
+        </ul>
+        <!--  搜索结果 end -->
+      </div>
+      <input class="search-submit" value="" id="search_submit" type="submit">
+    </div>
+    <!-- 搜索框 end -->	
+	  
+    <!-- 灯笼1 -->
+  <div class="deng-box">
+    <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+            <div class="deng-b"><div class="deng-t">$</div></div>
+        </div>
+        <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+    </div>
+  </div>
+ 
+    <!-- 灯笼2 -->
+  <div class="deng-box1">
+    <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+            <div class="deng-b"><div class="deng-t">$</div></div>
+        </div>
+        <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+    </div>
+  </div>
+	  
+	 <!-- 灯笼3 -->
+  <div class="deng-box2">
+    <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+            <div class="deng-b"><div class="deng-t">$</div></div>
+        </div>
+        <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+    </div>
+  </div>
+	  
+	 <!-- 灯笼4 -->
+  <div class="deng-box3">
+    <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+            <div class="deng-b"><div class="deng-t">$</div></div>
+        </div>
+        <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+    </div>
+  </div>
+	  
+    <!-- 导航地址 start -->
+    <div class="nav-content" style="top: 0px; display: none;">
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 跨境电商</div>
+        <ul class="jj-list-con">
+	<li><a href="https://www.amz123.com/" class="jj-list-link" target="_blank">AMZ123</a></li>
+	<li><a href="https://mjzj.com/" class="jj-list-link" target="_blank">卖家之家</a></li>
+	<li><a href="https://bbs.ichuanglan.com/" class="jj-list-link" target="_blank">创蓝论坛</a></li>
+	<li><a href="https://www.wearesellers.com/" class="jj-list-link" target="_blank">知无不言社区</a></li>
+	<li><a href="https://www.cifnews.com/" class="jj-list-link" target="_blank">雨果网</a></li>	
+	<li><a href="https://usa.testzon.com/" class="jj-list-link" target="_blank">Testzon</a></li>
+	<li><a href="https://www.retailmenot.com/submit" class="jj-list-link" target="_blank">Retailmenot</a></li>
+	<li><a href="https://producttestinggroup.com/" class="jj-list-link" target="_blank">产品评测网站</a></li>
+	<li><a href="https://www.buzzfeed.com/shopping/amazon" class="jj-list-link" target="_blank">Buzzfeed导购</a></li>
+	<li><a href="https://www.target.com/" class="jj-list-link" target="_blank">Target购物</a></li>
+	<li><a href="https://www.timeanddate.com/" class="jj-list-link" target="_blank">美国天气查询</a></li>
+	<li><a href="https://cn.investing.com/" class="jj-list-link" target="_blank">历史汇率查询</a></li>
+	<li><a href="https://www.amztracker.com/sign-in.php" class="jj-list-link" target="_blank">AMZ Tracker</a></li>
+	<li><a href="https://www.pinterest.com/" class="jj-list-link" target="_blank">Pinterest</a></li>
+	<li><a href="https://www.17track.net/en" class="jj-list-link" target="_blank">17TRACK</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 常用工具</div>
+        <ul class="jj-list-con">
+	<li><a href="https://ads.google.com/aw/keywordplanner/home" class="jj-list-link" target="_blank">Google关键词</a></li>
+	<li><a href="https://translate.google.cn/#view=home&op=translate&sl=auto&tl=en" class="jj-list-link" target="_blank">Google翻译</a></li>
+	<li><a href="https://trends.google.com/trends/?geo=US" class="jj-list-link" target="_blank">Google趋势</a></li>
+	<li><a href="https://mjzj.com/ce-ping-bao-guang-tai.html" class="jj-list-link" target="_blank">测评黑名单</a></li>
+	<li><a href="https://mjzj.com/mai-jia-gong-ju/paypal-ji-suan-qi.html" class="jj-list-link" target="_blank">Paypal手续费</a></li>
+	<li><a href="http://amazon.malllib.com/" class="jj-list-link" target="_blank">米库销量预估</a></li>
+	<li><a href="http://www.aihanyu.org/cncorpus/CpsTongji.aspx" class="jj-list-link" target="_blank">字词频统计</a></li>
+	<li><a href="https://www.amz123.com/bianjiqi.html" class="jj-list-link" target="_blank">可视化编辑器</a></li>
+	<li><a href="https://sellercentral.amazon.com/fba/profitabilitycalculator/index?lang=en_US" class="jj-list-link" target="_blank">物流收益计算器</a></li>
+	<li><a href="https://www.amazon.com/gp/bestsellers?language=en_US" class="jj-list-link" target="_blank">美亚销售榜</a></li>
+	<li><a href="https://www.amazon.com/gp/new-releases?language=en_US" class="jj-list-link" target="_blank">美亚新品榜</a></li>
+	<li><a href="https://www.amazon.com/gp/movers-and-shakers?language=en_US" class="jj-list-link" target="_blank">美亚飙升榜</a></li>
+	<li><a href="https://speedybarcodes.com/" class="jj-list-link" target="_blank">UPC码购买</a></li>
+	<li><a href="http://go.amazonsellerservices.com/advertising-eCalendar" class="jj-list-link" target="_blank">节假日日历</a></li>
+	<li><a href="./static/img/适销时间与款式.png" class="jj-list-link" target="_blank">适销时间与款式</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 过墙云梯</div>
+        <ul class="jj-list-con">
+	<li><a href="https://www.skyyogurt.gq/" class="jj-list-link" target="_blank">酸奶</a></li>
+	<li><a href="https://nroute.pro/auth/login" class="jj-list-link" target="_blank">EXFLUX</a></li>
+	<li><a href="https://github.com/QiangLie/domain" class="jj-list-link" target="_blank">墙裂</a></li>
+	<li><a href="https://suying777.github.io/" class="jj-list-link" target="_blank">速鹰</a></li>
+	<li><a href="https://github.com/NGC-HenryLee/NGC.SS.JJ/" class="jj-list-link" target="_blank">几鸡</a></li>
+	<li><a href="https://github.com/baacloud/url" class="jj-list-link" target="_blank">Baacloud</a></li>
+	<li><a href="./static/files/ShadowsocksR-win-4.9.2.zip" class="jj-list-link" target="_blank">小飞机 PC端</a></li>
+	<li><a href="./static/files/shadowsocks--universal-5.0.5.apk" class="jj-list-link" target="_blank">小飞机 安卓端</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a href="./static/files/v2rayN-Core.zip" class="jj-list-link" target="_blank">v2ray PC端</a></li>
+	<li><a href="./static/files/v2rayNG_1.1.14.apk" class="jj-list-link" target="_blank">v2ray 安卓端</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a href="https://iguge.app/" class="jj-list-link" target="_blank">谷歌访问助手</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 国内电商</div>
+        <ul class="jj-list-con">
+	<li><a href="http://www.ywindex.com/" class="jj-list-link" target="_blank">义乌指数</a></li>
+	<li><a href="https://qingxiaojian.cn/" class="jj-list-link" target="_blank">轻小件</a></li>
+	<li><a href="https://luban.taobao.com/" class="jj-list-link" target="_blank">鹿班</a></li>
+	<li><a href="https://tousu.taobao.com/" class="jj-list-link" target="_blank">恶意行为投诉</a></li>
+	<li><a href="https://ad.alimama.com/" class="jj-list-link" target="_blank">淘宝联盟</a></li>
+	<li><a href="https://try.taobao.com/" class="jj-list-link" target="_blank">淘宝试用中心</a></li>
+	<li><a href="https://we.taobao.com/" class="jj-list-link" target="_blank">阿里创作平台</a></li>
+	<li><a href="https://healthcenter.taobao.com/" class="jj-list-link" target="_blank">淘宝体检中心</a></li>
+	<li><a href="https://shuyuan.taobao.com/" class="jj-list-link" target="_blank">阿里万唐书院</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 谷歌浏览器插件</div>
+        <ul class="jj-list-con">
+	<li><a href="https://chrome.google.com/webstore/detail/nhebfnlghmjfcammdgbgfcomeonbfcfn" class="jj-list-link" target="_blank">AMZBase</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/nakplnnackehceedgkgkokbgbmfghain" class="jj-list-link" target="_blank">Fakespot</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/edofaejneafigdpgmdhjbbdldfimpmdn" class="jj-list-link" target="_blank">Fusionzoom</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/njmehopjdpcckochcggncklnlmikcbnb" class="jj-list-link" target="_blank">Helium 10</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/nlfbdfoflejnfmegadjbcbollehokmeg" class="jj-list-link" target="_blank">Images finder</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/neebplgakaahbhdphmkckjjcegoiijjo" class="jj-list-link" target="_blank">Keepa</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/glgcbdbnacmlgjaabjliokbnklbpdlno" class="jj-list-link" target="_blank">wooSeeker</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/ofaokhiedipichpaobibbnahnkdoiiah" class="jj-list-link" target="_blank">Instant Data</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/bpgkfekflkgphdifpnehncchdfkhoahi" class="jj-list-link" target="_blank">亚马逊库存查询</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/web-scraper/jnhgnonknehpejjnehehllkliplmbmhn" class="jj-list-link" target="_blank">Web Scraper</a></li>
+	<li><a href="http://www.iwebscraper.com/" class="jj-list-link" target="_blank">WebSc...模板</a></li>
+	<li><a href="https://www.cnblogs.com/web-scraper/" class="jj-list-link" target="_blank">WebSc...教程</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/ngpampappnmepgilojfohadhhmbhlaek" class="jj-list-link" target="_blank">IDM插件版</a></li>
+	<li><a href="https://chrome.google.com/webstore/detail/jnlkjeecojckkigmchmfoigphmgkgbip" class="jj-list-link" target="_blank">Gooreplacer</a></li>
+	<li><a href="./static/img/Gooreplacer设置.png" class="jj-list-link" target="_blank">绕过谷歌验证码</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 常用软件</div>
+        <ul class="jj-list-con">
+	<li><a href="https://www.lanzous.com/ia67vgf" class="jj-list-link" target="_blank">Qtranslate</a></li>
+	<li><a href="https://www.lanzous.com/ia67wch" class="jj-list-link" target="_blank">Snipaste</a></li>
+	<li><a href="https://www.lanzous.com/ia67yeb" class="jj-list-link" target="_blank">PureText</a></li>
+	<li><a href="https://www.lanzous.com/ia67wpa" class="jj-list-link" target="_blank">IDM下载器</a></li>
+	<li><a href="https://www.lanzous.com/ia67wte" class="jj-list-link" target="_blank">网速监控器</a></li>
+	<li><a href="https://www.lanzous.com/ia6820b" class="jj-list-link" target="_blank">火车头采集器</a></li>
+	<li><a href="https://wikipedia.mirror.wit.im/" class="jj-list-link" target="_blank">维基百科镜像站</a></li>
+	<li><a href="https://www.lanzous.com/ia108kj" class="jj-list-link" target="_blank">PDF专家</a></li>
+	<li><a href="https://www.lanzous.com/ia67mqb" class="jj-list-link" target="_blank">Xmind</a></li>
+	<li><a href="https://www.lanzous.com/ia10owh" class="jj-list-link" target="_blank">PS配色神器</a></li>
+	<li><a href="https://www.lanzous.com/ia10qyb" class="jj-list-link" target="_blank">常用字体</a></li>
+	<li><a href="https://www.lanzous.com/ia10vfc" class="jj-list-link" target="_blank">Office365</a></li>
+	<li><a href="https://www.lanzous.com/ia110pc" class="jj-list-link" target="_blank">TeamViewer</a></li>
+	<li><a href="https://www.lanzous.com/ia114ri" class="jj-list-link" target="_blank">记事本</a></li>
+	<li><a href="https://www.lanzous.com/ia117fe" class="jj-list-link" target="_blank">实用小工具</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 导航&工具箱</div>
+        <ul class="jj-list-con">
+	<li><a href="https://hao.uisdc.com/" class="jj-list-link" target="_blank">优设导航</a></li>
+	<li><a href="http://www.xsldh6.com/" class="jj-list-link" target="_blank">小森林导航</a></li>
+	<li><a href="http://ilxdh.com/" class="jj-list-link" target="_blank">龙轩导航</a></li>
+	<li><a href="http://dh.yunyingdog.cn/" class="jj-list-link" target="_blank">运营狗导航</a></li>
+	<li><a href="https://www.dianxiaoyu.com/" class="jj-list-link" target="_blank">店小鱼导航</a></li>
+	<li><a href="https://www.ibbuu.com/" class="jj-list-link" target="_blank">驿站导航</a></li>
+	<li><a href="https://www.mifar.net/" class="jj-list-link" target="_blank">米范导航</a></li>
+	<li><a href="https://www.yuque.com/alipayqgthu1irbf/sharkfin" class="jj-list-link" target="_blank">沙克芬导航</a></li>
+	<li><a href="https://www.iamwawa.cn/" class="jj-list-link" target="_blank">蛙蛙工具箱</a></li>
+	<li><a href="https://www.dute.org/" class="jj-list-link" target="_blank">独特工具箱</a></li>
+	<li><a href="http://www.17foreign.com/" class="jj-list-link" target="_blank">外贸工具箱</a></li>
+	<li><a href="http://www.atoolbox.net/" class="jj-list-link" target="_blank">一个工具箱</a></li>
+	<li><a href="https://tools.miku.ac/" class="jj-list-link" target="_blank">MikuTools</a></li>
+	<li><a href="http://guozhivip.com/tool/" class="jj-list-link" target="_blank">果汁工具</a></li>
+	<li><a href="https://mjzj.com/newmjzj/tools" class="jj-list-link" target="_blank">卖家之家工具</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 其它壹</div>
+        <ul class="jj-list-con">
+	<li><a href="https://www.51voa.com/" class="jj-list-link" target="_blank">VOA美国之音</a></li>
+	<li><a href="http://report.seedsufe.com/#/index" class="jj-list-link" target="_blank">行业报告</a></li>
+	<li><a href="https://www.vvic.com/" class="jj-list-link" target="_blank">搜款网</a></li>
+	<li><a href="https://uigradients.com/" class="jj-list-link" target="_blank">漂亮的渐变色</a></li>
+	<li><a href="https://www.pexels.com/" class="jj-list-link" target="_blank">Pexels图库</a></li>
+	<li><a href="https://www.brusheezy.com/" class="jj-list-link" target="_blank">PS笔刷</a></li>
+	<li><a href="https://www.pingpongx.com/zh" class="jj-list-link" target="_blank">PingPong收款</a></li>
+	<li><a href="https://global.lianlianpay.com/" class="jj-list-link" target="_blank">连连收款</a></li>
+	<li><a href="https://www.worldfirst.com.cn/cn/" class="jj-list-link" target="_blank">WorldFirst收款</a></li>
+	<li><a href="https://www.captainbi.com/" class="jj-list-link" target="_blank">船长</a></li>
+	<li><a href="https://www.uspto.gov/trademarks-application-process/search-trademark-database" class="jj-list-link" target="_blank">美国商标检索</a></li>
+	<li><a href="https://www.logaster.com/" class="jj-list-link" target="_blank">logo在线设计</a></li>
+	<li><a href="http://www.qiuziti.com/" class="jj-list-link" target="_blank">求字体网</a></li>
+	<li><a href="https://www.yandy.com/" class="jj-list-link" target="_blank">情趣内衣网</a></li>
+	<li><a href="https://www.hoocs.com/" class="jj-list-link" target="_blank">虎客资源买卖</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">明 · 其它贰</div>
+        <ul class="jj-list-con">
+	<li><a href="https://www.fxxkmakeding.xyz/" class="jj-list-link" target="_blank">FXXK马克丁</a></li>
+	<li><a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfRL/rl.cfm" class="jj-list-link" target="_blank">FDA查询网址</a></li>
+	<li><a href="http://sizefan.com/" class="jj-list-link" target="_blank">尺寸迷</a></li>
+	<li><a href="http://www.199it.com/" class="jj-list-link" target="_blank">互联网数据资讯</a></li>
+	<li><a href="http://www.haoweichi.com/" class="jj-list-link" target="_blank">虚拟身份01</a></li>
+	<li><a href="https://www.fakenamegenerator.com/" class="jj-list-link" target="_blank">虚拟身份02</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+	<li><a class="jj-list-link" target="_blank">--</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- 导航地址 end -->
+  </div>
+</div>
+<footer class="inner-center footer">
+  <p>
+   <a target="_blank"> <img src="./static/css/img/github.png" alt="" height="20" width="20"></a>
+  </p>
+  <p style="margin-top:8px;"> <a style="color:#8C8C8C;" target="_blank">Copyright © 2020 Hosted by Ming</a></p>
+ 
+</footer>
+<script src="./static/js/jquery.min.js"></script>
+<script src="./static/js/keyword.js"></script>
+</p>
+<script src="./background/鼠标线条.js"></script>
+
+</body>
+</html>
